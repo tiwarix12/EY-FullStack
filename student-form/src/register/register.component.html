@@ -1,0 +1,60 @@
+<style>
+  .card {
+      width: 600px;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn {
+      padding: 10px 30px;
+      font-size: 1.1rem;
+      color: azure;
+      background-color: rgb(89, 0, 255);
+      border-color: rgb(89, 0, 255);
+  }
+
+  .form-label {
+      font-size: 1.2rem;
+      color: #5a5a5a;
+  }
+
+  .form-control {
+      border-radius: 5px;
+      height: 50px;
+      font-size: 1.1rem;
+  }
+
+  @media (max-width: 768px) {
+      .card {
+          width: 90%;
+          padding: 20px;
+      }
+  }
+</style>
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <div class="card shadow">
+      <div class="card-body">
+          <form>
+              <div class="mb-3">
+                  <h2 class="text-dark text-muted text-center">Signup with your Email!</h2>
+              </div>
+              <div class="mb-3">
+                  <label for="Email1" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="Email1" name="email" [(ngModel)]="email" placeholder="email">
+              </div>
+              <div class="mb-3">
+                  <label for="Password" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="Password" name="password" [(ngModel)]="password" placeholder="********">
+              </div>
+              <button type="button" class="btn btn-info w-100" (click)="register()">Register</button>
+              <div class="row mt-2">
+                  <div class="col-md-12 text-center">
+                      <a href="/login" style="text-decoration: none;">Already have an account? <span class="text-danger">Login</span></a>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>

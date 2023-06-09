@@ -1,0 +1,70 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <button class="btn btn-link" (click)="logout()">Logout</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row justify-content-center mt-5">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <mat-card>
+                        <mat-card-title class="text-center">Enter Your Details Here</mat-card-title>
+                        <mat-card-content>
+                            <form [formGroup]="form" (ngSubmit)="addStudent()">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Name</mat-label>
+                                    <input matInput id="name" formControlName="name" required>
+                                    <mat-error *ngIf="form.controls.name.invalid && (form.controls.name.dirty || form.controls.name.touched)">
+                                      <span *ngIf="form.controls.name.errors?.['required']">Please enter a first name</span>
+                                      <span *ngIf="form.controls.name.errors?.['pattern']">First name must start with a capital letter and contain only letters</span>
+                                    </mat-error>
+                                  </mat-form-field>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Age</mat-label>
+                                    <input matInput formControlName="age" type="number" value="0" min="15"  required>
+                                    <mat-error *ngIf="form.controls.age.errors?.['required']">Please enter an age</mat-error>
+                                    <mat-error *ngIf="form.controls.age.errors?.['min']">Age must be above 10</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Birth Date MM/DD/YYYY</mat-label>
+                                    <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" value="01/01/2002" required>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                    <mat-error *ngIf="form.controls.dateOfBirth.invalid">Please enter a valid date of birth</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Country</mat-label>
+                                    <mat-select formControlName="country" value="USA" required>
+                                        <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="form.controls.country.invalid">Please select a country</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>CGPA</mat-label>
+                                    <input matInput formControlName="cgpa" type="number" step="0.1" min="0" max="10" required>
+                                    <mat-error *ngIf="form.controls.cgpa.invalid && (form.controls.cgpa.dirty || form.controls.cgpa.touched)">
+                                      <span *ngIf="form.controls.cgpa.errors?.['required']">Please enter a CGPA</span>
+                                      <span *ngIf="form.controls.cgpa.errors?.['min']">CGPA must be above 0</span>
+                                      <span *ngIf="form.controls.cgpa.errors?.['max']">CGPA must not exceed 10</span>
+                                    </mat-error>
+                                  </mat-form-field>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Add Student</button>
+                                </div>
+                            </form>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
